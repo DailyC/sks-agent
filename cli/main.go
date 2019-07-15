@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"github.com/spf13/cobra/doc"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -40,6 +42,11 @@ func main() {
 	queryCommand.AddCommand(&QueryDiskCommand{})
 	queryCommand.AddCommand(&QueryNetworkCommand{})
 	queryCommand.AddCommand(&QueryJvmCommand{})
+
+	err := doc.GenMarkdownTree(cli.rootCmd, "tmp")
+	if err != nil {
+		logrus.Warningf("generate doc err: %v", err)
+	}
 
 	if err := cli.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err.Error())

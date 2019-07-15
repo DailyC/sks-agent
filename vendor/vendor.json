@@ -21,6 +21,12 @@
 			"revisionTime": "2019-01-09T00:34:09Z"
 		},
 		{
+			"checksumSHA1": "4wtJcxhZECnOvQrbqqQ1GIJI9As=",
+			"path": "github.com/spf13/cobra/doc",
+			"revision": "7547e83b2d85fd1893c7d76916f67689d761fecb",
+			"revisionTime": "2019-01-09T00:34:09Z"
+		},
+		{
 			"checksumSHA1": "VK+UsykzUMkaKl2ankiyutolraE=",
 			"path": "github.com/spf13/pflag",
 			"revision": "24fa6976df40757dce6aea913e7b81ade90530e1",
