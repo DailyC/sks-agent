@@ -57,16 +57,20 @@ var tmpDataFile = "/tmp/chaos_burnio.log.dat"
 var logFile = "/tmp/chaos_burnio.log"
 var burnIOBin = "chaos_burnio"
 
+var channel = exec.NewLocalChannel()
+
+var stopBurnIOFunc = stopBurnIO
+
 // start burn io
 func startBurnIO(fileSystem, size, count string, read, write bool) {
-	channel := exec.NewLocalChannel()
 	ctx := context.Background()
 	response := channel.Run(ctx, "nohup",
 		fmt.Sprintf(`%s --file-system %s --size %s --count %s --read=%t --write=%t --nohup=true > %s 2>&1 &`,
 			path.Join(util.GetProgramPath(), burnIOBin), fileSystem, size, count, read, write, logFile))
 	if !response.Success {
-		stopBurnIO()
+		stopBurnIOFunc()
 		bin.PrintErrAndExit(response.Err)
+		return
 	}
 	// check
 	time.Sleep(time.Second)
@@ -74,8 +78,9 @@ func startBurnIO(fileSystem, size, count string, read, write bool) {
 	if response.Success {
 		errMsg := strings.TrimSpace(response.Result.(string))
 		if errMsg != "" {
-			stopBurnIO()
+			stopBurnIOFunc()
 			bin.PrintErrAndExit(errMsg)
+			return
 		}
 	}
 	bin.PrintOutputAndExit("success")
@@ -85,7 +90,6 @@ var taskName = []string{"if=/dev/zero", "of=/dev/null"}
 
 // stop burn io,  no need to add os.Exit
 func stopBurnIO() {
-	channel := exec.NewLocalChannel()
 	ctx := context.Background()
 	for _, name := range taskName {
 		pids, _ := exec.GetPidsByProcessName(name, ctx)

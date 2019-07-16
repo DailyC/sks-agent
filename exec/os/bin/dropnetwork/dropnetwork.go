@@ -41,7 +41,7 @@ func startDropNet(localPort, remotePort string) {
 	handleDropSpecifyPort(remotePort, localPort, channel, ctx)
 }
 
-func handleDropSpecifyPort(remotePort string, localPort string, channel *exec.LocalChannel, ctx context.Context) {
+func handleDropSpecifyPort(remotePort string, localPort string, channel exec.Channel, ctx context.Context) {
 	var response *transport.Response
 	if localPort != "" {
 		response = channel.Run(ctx, "iptables",
