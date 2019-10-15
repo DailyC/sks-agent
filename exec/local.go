@@ -3,14 +3,14 @@ package exec
 import (
 	"context"
 	"fmt"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
-	"os/exec"
-	"strings"
-	"time"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/sirupsen/logrus"
 	"os"
+	"os/exec"
 	"strconv"
+	"strings"
+	"time"
 )
 
 var channel = &LocalChannel{}

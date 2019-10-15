@@ -1,10 +1,10 @@
 package docker
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
 	"fmt"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 type removeActionCommand struct {
@@ -27,8 +27,7 @@ func (*removeActionCommand) LongDesc() string {
 }
 
 func (*removeActionCommand) Matchers() []exec.ExpFlagSpec {
-	return []exec.ExpFlagSpec{
-	}
+	return []exec.ExpFlagSpec{}
 }
 
 func (*removeActionCommand) Flags() []exec.ExpFlagSpec {

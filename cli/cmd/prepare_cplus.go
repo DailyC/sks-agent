@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/chaosblade-io/chaosblade/exec/cplus"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/exec/cplus"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 type PrepareCPlusCommand struct {

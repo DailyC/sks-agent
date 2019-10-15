@@ -1,4 +1,4 @@
-module github.com/chaosblade-io/chaosblade
+module github.com/DailyC/sks-agent
 
 go 1.13
 

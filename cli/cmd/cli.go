@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/spf13/cobra"
 )
 

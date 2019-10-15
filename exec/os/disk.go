@@ -1,7 +1,7 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
+	"github.com/DailyC/sks-agent/exec"
 )
 
 type DiskCommandSpec struct {

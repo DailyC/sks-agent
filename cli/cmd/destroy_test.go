@@ -5,7 +5,7 @@ import (
 
 	"reflect"
 
-	"github.com/chaosblade-io/chaosblade/exec"
+	"github.com/DailyC/sks-agent/exec"
 )
 
 func Test_convertCommandModel(t *testing.T) {

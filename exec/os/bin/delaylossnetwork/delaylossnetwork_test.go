@@ -1,13 +1,13 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"testing"
-	"context"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 func Test_startDelayNet(t *testing.T) {

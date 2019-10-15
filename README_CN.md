@@ -20,7 +20,7 @@ Chaosblade 的 cli 工具是 blade，下载或编译后可直接使用。blade �
 * destroy：简写是 d，销毁之前的混沌实验，比如销毁上面提到的 Dubbo 延迟实验，命令是 `blade destroy UID`
 * status：简写 s，查询准备阶段或者实验的状态，命令是 `blade status UID` 或者 `blade status --type create`
 
-以上命令帮助均可使用 `blade help [COMMAND]` 查看，也可查看[新手指南](https://github.com/chaosblade-io/chaosblade/wiki/%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)，快速上手使用。
+以上命令帮助均可使用 `blade help [COMMAND]` 查看，也可查看[新手指南](https://github.com/DailyC/sks-agent/wiki/%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)，快速上手使用。
 
 ## Demo 体验
 下载 chaosblade demo 镜像体验 blade 工具的使用。

@@ -1,11 +1,11 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
 	"fmt"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"strings"
 )
 
@@ -56,7 +56,7 @@ func (*ScriptCommandModelSpec) PreExecutor() exec.PreExecutor {
 	return nil
 }
 
-const bakFileSuffix = "_chaosblade.bak"
+const bakFileSuffix = "_sks-agent.bak"
 
 // backScript
 func backScript(channel exec.Channel, scriptFile string) *transport.Response {

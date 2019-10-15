@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
+	"github.com/DailyC/sks-agent/exec/os/bin"
 )
 
 func Test_killProcess(t *testing.T) {

@@ -5,15 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/chaosblade-io/chaosblade/data"
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/data"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	neturl "net/url"
 	"strings"
 )
 
-const DefaultUri = "sandbox/default/module/http/chaosblade"
+const DefaultUri = "sandbox/default/module/http/sks-agent"
 
 // Executor for jvm experiment
 type Executor struct {

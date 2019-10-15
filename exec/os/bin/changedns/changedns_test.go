@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 func Test_createDnsPair(t *testing.T) {
@@ -18,9 +18,9 @@ func Test_createDnsPair(t *testing.T) {
 		input  input
 		expect string
 	}{
-		{input{"bbc.com", "151.101.8.81"}, "151.101.8.81 bbc.com #chaosblade"},
-		{input{"g.com", "172.217.168.209"}, "172.217.168.209 g.com #chaosblade"},
-		{input{"github.com", "192.30.255.112"}, "192.30.255.112 github.com #chaosblade"},
+		{input{"bbc.com", "151.101.8.81"}, "151.101.8.81 bbc.com #sks-agent"},
+		{input{"g.com", "172.217.168.209"}, "172.217.168.209 g.com #sks-agent"},
+		{input{"github.com", "192.30.255.112"}, "192.30.255.112 github.com #sks-agent"},
 	}
 
 	for _, tt := range tests {
@@ -47,7 +47,7 @@ func Test_startChangeDns_failed(t *testing.T) {
 	}
 	channel = &exec.MockLocalChannel{
 		Response:         transport.ReturnSuccess("DnsPair has exists"),
-		ExpectedCommands: []string{fmt.Sprintf(`grep -q "208.80.152.2 abc.com #chaosblade" /etc/hosts`)},
+		ExpectedCommands: []string{fmt.Sprintf(`grep -q "208.80.152.2 abc.com #sks-agent" /etc/hosts`)},
 		T:                t,
 	}
 
@@ -74,7 +74,7 @@ func Test_recoverDns_failed(t *testing.T) {
 	}
 	channel = &exec.MockLocalChannel{
 		Response:         transport.ReturnFail(transport.Code[transport.CommandNotFound], "grep command not found"),
-		ExpectedCommands: []string{fmt.Sprintf(`grep -q "208.80.152.2 abc.com #chaosblade" /etc/hosts`)},
+		ExpectedCommands: []string{fmt.Sprintf(`grep -q "208.80.152.2 abc.com #sks-agent" /etc/hosts`)},
 		T:                t,
 	}
 

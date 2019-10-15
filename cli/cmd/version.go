@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/chaosblade-io/chaosblade/version"
+	"github.com/DailyC/sks-agent/version"
 	"github.com/spf13/cobra"
 )
 

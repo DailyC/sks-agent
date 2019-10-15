@@ -1,10 +1,10 @@
 package kubernetes
 
 import (
-	"testing"
 	"os"
+	"testing"
 
-	"github.com/chaosblade-io/chaosblade/exec"
+	"github.com/DailyC/sks-agent/exec"
 )
 
 func TestCommandModelSpec_Name(t *testing.T) {

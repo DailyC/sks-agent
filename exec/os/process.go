@@ -1,6 +1,6 @@
 package os
 
-import "github.com/chaosblade-io/chaosblade/exec"
+import "github.com/DailyC/sks-agent/exec"
 
 type ProcessCommandModelSpec struct {
 }

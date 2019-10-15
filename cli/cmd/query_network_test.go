@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/transport"
 	"github.com/spf13/cobra"
 )
 

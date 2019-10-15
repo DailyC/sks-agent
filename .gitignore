@@ -37,12 +37,12 @@ coverage.html
 tags
 
 # Project specific
-/chaosblade
+/sks-agent
 /blade
 /bin/java-agent*.jar
-/hack/chaosblade*
+/hack/sks-agent*
 /hack/lib/**
-/chaosblade.dat
+/sks-agent.dat
 target
 coverage.txt
 

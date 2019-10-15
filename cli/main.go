@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/chaosblade-io/chaosblade/cli/cmd"
+	"github.com/DailyC/sks-agent/cli/cmd"
 )
 
 func main() {

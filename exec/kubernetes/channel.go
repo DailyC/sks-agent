@@ -1,12 +1,12 @@
 package kubernetes
 
 import (
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
 	"fmt"
-	"github.com/chaosblade-io/chaosblade/exec"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"strings"
-	"github.com/chaosblade-io/chaosblade/util"
 )
 
 const Command = "kubectl"

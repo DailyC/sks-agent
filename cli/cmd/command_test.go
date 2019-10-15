@@ -3,7 +3,7 @@ package cmd
 import (
 	"testing"
 
-	"github.com/chaosblade-io/chaosblade/data"
+	"github.com/DailyC/sks-agent/data"
 )
 
 func Test_baseCommand_recordExpModel(t *testing.T) {

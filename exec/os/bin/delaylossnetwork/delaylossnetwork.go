@@ -5,13 +5,13 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"strings"
-	"github.com/chaosblade-io/chaosblade/util"
-	"strconv"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/sirupsen/logrus"
+	"strconv"
+	"strings"
 )
 
 var dlNetInterface, dlLocalPort, dlRemotePort, dlExcludePort string
@@ -147,6 +147,7 @@ func addIpFilterForDL(ctx context.Context, channel exec.Channel, netInterface st
 }
 
 var stopDLNetFunc = stopNet
+
 // addLocalOrRemotePortForDL creates class rule in 1:4 queue and add filter to the queue
 func addLocalOrRemotePortForDL(ctx context.Context, channel exec.Channel,
 	netInterface, classRule, localPort, remotePort, ipRule string) *transport.Response {

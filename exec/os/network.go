@@ -1,9 +1,9 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
 	"fmt"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/util"
 	"strings"
 )
 

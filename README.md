@@ -1,6 +1,6 @@
 ![logo](https://chaosblade.oss-cn-hangzhou.aliyuncs.com/doc/image/chaosblade-logo.png)  
 
-# Chaosblade: An Easy to Use and Powerful Chaos Engineering Toolkit
+# sks-agent: An Easy to Use and Powerful Chaos Engineering Toolkit
 [![Build Status](https://travis-ci.org/chaosblade-io/chaosblade.svg?branch=master)](https://travis-ci.org/chaosblade-io/chaosblade)
 [![codecov](https://codecov.io/gh/chaosblade-io/chaosblade/branch/master/graph/badge.svg)](https://codecov.io/gh/chaosblade-io/chaosblade)
 ![license](https://img.shields.io/github/license/chaosblade-io/chaosblade.svg)
@@ -45,11 +45,11 @@ After entering the container, you can read the README.txt file to implement the 
 ## Compile
 Install [Golang](https://golang.org/doc/install) first, then download the project to `GOPATH`:
 ```bash
-go get github.com/chaosblade-io/chaosblade
+go get github.com/DailyC/sks-agent
 ```
-This project was downloaded to the `GOPATH/src/github.com/chaosblade-io/chaosblade` directory. You can execute `go env` command to view the `GOPATH` value. 
+This project was downloaded to the `GOPATH/src/github.com/DailyC/sks-agent` directory. You can execute `go env` command to view the `GOPATH` value. 
 
-Go to the project root directory(`GOPATH/src/github.com/chaosblade-io/chaosblade`) and execute compile:
+Go to the project root directory(`GOPATH/src/github.com/DailyC/sks-agent`) and execute compile:
 ```bash
 make
 ```
@@ -67,7 +67,7 @@ make build_image
 Compilation process:
 * Create the compilation result folder target and chaosblade version directory in the project root directory, and the compiled file is placed in the target/chaosblade-[version] directory.
 * Download the third-party package [jvm-sandbox](https://github.com/alibaba/jvm-sandbox/releases) required by Java Application Chaos Experiment to the cache folder (target/cache)
-* Download chaosblade java agent and tools.jar (for attaching jvm), jar package for implementing Java chaos experiments to cache folder (target/cache)
+* Download sks-agent java agent and tools.jar (for attaching jvm), jar package for implementing Java chaos experiments to cache folder (target/cache)
 * Unzip the JVM-SANDBOX package to the target/chaosblade-[version]/lib directory; copy the chaosblade java agent jar to the JVM-SANDBOX module directory (target/chaosblade-[version]/lib/sandbox/module)
 * Compile the blade (cli command tool) to the target/chaosblade-[version] directory, and other programs needed to implement the chaos experiment will be compiled into the target/chaosblade-[version]/bin directory.
 * Compile is complete, you can enter the target/chaosblade-[version] directory, you can use the blade toolkit.
@@ -81,7 +81,7 @@ make clean
 We welcome every contribution, even if it is just punctuation. See details of [CONTRIBUTING](CONTRIBUTING.md)
 
 ## Bugs and Feedback
-For bug report, questions and discussions please submit [GitHub Issues](https://github.com/chaosblade-io/chaosblade/issues).
+For bug report, questions and discussions please submit [GitHub Issues](https://github.com/DailyC/sks-agent/issues).
 
 Contact us: chaosblade.io.01@gmail.com
 
@@ -99,7 +99,7 @@ Gitter room: [chaosblade community](https://gitter.im/chaosblade-io/community)
 
 
 ## Executor Project
-* [chaosblade-exec-jvm](https://github.com/chaosblade-io/chaosblade-exec-jvm): chaosblade executor for Java Applications
+* [chaosblade-exec-jvm](https://github.com/DailyC/sks-agent-exec-jvm): chaosblade executor for Java Applications
 
 
 ## Ecosystem Architecture

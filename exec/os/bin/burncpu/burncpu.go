@@ -12,9 +12,9 @@ import (
 
 	"strconv"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/process"
 )

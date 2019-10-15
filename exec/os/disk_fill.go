@@ -1,12 +1,12 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
 	"fmt"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"path"
-	"github.com/chaosblade-io/chaosblade/util"
 	"strconv"
 )
 

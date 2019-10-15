@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chaosblade-io/chaosblade/data"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/data"
+	"github.com/DailyC/sks-agent/util"
 
 	"github.com/spf13/cobra"
 )

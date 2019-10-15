@@ -2,7 +2,7 @@ package exec
 
 import (
 	"context"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 type Channel interface {

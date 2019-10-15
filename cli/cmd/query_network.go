@@ -5,7 +5,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/transport"
 	"github.com/spf13/cobra"
 )
 

@@ -5,8 +5,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
 )
 
 var dnsDomain, dnsIp string
@@ -72,5 +72,5 @@ func recoverDns(domain, ip string) {
 }
 
 func createDnsPair(domain, ip string) string {
-	return fmt.Sprintf("%s %s #chaosblade", ip, domain)
+	return fmt.Sprintf("%s %s #sks-agent", ip, domain)
 }

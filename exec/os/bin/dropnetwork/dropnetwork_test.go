@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/os/bin"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/os/bin"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 func Test_startDropNet_failed(t *testing.T) {
@@ -63,9 +63,9 @@ func Test_handleDropSpecifyPort(t *testing.T) {
 	for _, tt := range tests {
 		invokeTime = 0
 		channel = &exec.MockLocalChannel{
-			Response:     tt.input.response,
-			NoCheck:	  true,
-			T:            t,
+			Response: tt.input.response,
+			NoCheck:  true,
+			T:        t,
 		}
 		handleDropSpecifyPort(tt.input.remotePort, tt.input.localPort, channel, context.Background())
 		if exitCode != tt.expect.exitCode {

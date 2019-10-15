@@ -1,8 +1,8 @@
 package kubernetes
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
 	"context"
+	"github.com/DailyC/sks-agent/exec"
 )
 
 type CommandModelSpec struct {

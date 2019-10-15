@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/chaosblade-io/chaosblade/data"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/data"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

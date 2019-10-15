@@ -1,7 +1,7 @@
 package jvm
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
+	"github.com/DailyC/sks-agent/exec"
 	"testing"
 )
 

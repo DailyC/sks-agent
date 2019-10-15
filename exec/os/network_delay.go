@@ -1,12 +1,12 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
-	"path"
 	"fmt"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
+	"path"
 )
 
 type DelayActionSpec struct {

@@ -1,11 +1,11 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
 	"context"
-	"path"
 	"fmt"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"path"
 )
 
 type DropActionSpec struct {
@@ -62,7 +62,7 @@ func (ne *NetworkDropExecutor) Exec(suid string, ctx context.Context, model *exe
 	remotePort := model.ActionFlags["remote-port"]
 	if _, ok := exec.IsDestroy(ctx); ok {
 		return ne.stop(localPort, remotePort, ctx)
-	} 
+	}
 
 	return ne.start(localPort, remotePort, ctx)
 }

@@ -1,11 +1,11 @@
 package os
 
 import (
-	"github.com/chaosblade-io/chaosblade/exec"
 	"context"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
 	"fmt"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 )
 
 type ScriptExitActionCommand struct {

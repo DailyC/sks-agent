@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/chaosblade-io/chaosblade/exec/jvm"
+	"github.com/DailyC/sks-agent/exec/jvm"
 	"github.com/spf13/cobra"
 )
 

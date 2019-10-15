@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/chaosblade-io/chaosblade/exec/jvm"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec/jvm"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -17,7 +17,7 @@ type PrepareJvmCommand struct {
 	baseCommand
 	javaHome    string
 	processName string
-	// sandboxHome is jvm-sandbox home, default value is CHAOSBLADE_HOME/lib
+	// sandboxHome is jvm-sandbox home, default value is sks-agent_HOME/lib
 	sandboxHome string
 	port        int
 	processId   string

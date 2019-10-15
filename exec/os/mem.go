@@ -6,8 +6,8 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/transport"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
 )
 
 type MemCommandModelSpec struct {

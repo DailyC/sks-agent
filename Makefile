@@ -2,29 +2,29 @@
 
 BLADE_VERSION=0.3.0
 
-BLADE_BIN=blade
-BLADE_EXPORT=chaosblade-$(BLADE_VERSION).tgz
+BLADE_BIN=sks
+BLADE_EXPORT=sks-agent-$(BLADE_VERSION).tgz
 BLADE_SRC_ROOT=`pwd`
 
 GO_ENV=CGO_ENABLED=1
-VERSION_PKG=github.com/chaosblade-io/chaosblade/version
+VERSION_PKG=github.com/DailyC/sks-agent/version
 GO_FLAGS=-ldflags="-X ${VERSION_PKG}.Ver=$(BLADE_VERSION) -X '${VERSION_PKG}.Env=`uname -mv`' -X '${VERSION_PKG}.BuildTime=`date`'"
 GO=env $(GO_ENV) go
 
 UNAME := $(shell uname)
 
 BUILD_TARGET=target
-BUILD_TARGET_DIR_NAME=chaosblade-$(BLADE_VERSION)
-BUILD_TARGET_PKG_DIR=$(BUILD_TARGET)/chaosblade-$(BLADE_VERSION)
+BUILD_TARGET_DIR_NAME=sks-agent-$(BLADE_VERSION)
+BUILD_TARGET_PKG_DIR=$(BUILD_TARGET)/sks-agent-$(BLADE_VERSION)
 BUILD_TARGET_BIN=$(BUILD_TARGET_PKG_DIR)/bin
 BUILD_TARGET_LIB=$(BUILD_TARGET_PKG_DIR)/lib
 BUILD_TARGET_TAR_NAME=$(BUILD_TARGET_DIR_NAME).tar.gz
 BUILD_TARGET_PKG_FILE_PATH=$(BUILD_TARGET)/$(BUILD_TARGET_TAR_NAME)
-BUILD_IMAGE_PATH=build/image/blade
+BUILD_IMAGE_PATH=build/image/sks
 # cache downloaded file
 BUILD_TARGET_CACHE=$(BUILD_TARGET)/cache
 # oss url
-BLADE_OSS_URL=https://chaosblade.oss-cn-hangzhou.aliyuncs.com/agent/release
+BLADE_OSS_URL=https://sks-agent.oss-cn-hangzhou.aliyuncs.com/agent/release
 
 # used to transform java class
 JVM_SANDBOX_VERSION=1.2.0
@@ -33,10 +33,10 @@ JVM_SANDBOX_OSS_URL=https://ompc.oss-cn-hangzhou.aliyuncs.com/jvm-sandbox/releas
 JVM_SANDBOX_DEST_PATH=$(BUILD_TARGET_CACHE)/$(JVM_SANDBOX_NAME)
 # used to execute jvm chaos
 BLADE_JAVA_AGENT_VERSION=0.3.0
-BLADE_JAVA_AGENT_NAME=chaosblade-java-agent-$(BLADE_JAVA_AGENT_VERSION).jar
+BLADE_JAVA_AGENT_NAME=sks-agent-java-agent-$(BLADE_JAVA_AGENT_VERSION).jar
 BLADE_JAVA_AGENT_DOWNLOAD_URL=$(BLADE_OSS_URL)/$(BLADE_JAVA_AGENT_NAME)
 BLADE_JAVA_AGENT_DEST_PATH=$(BUILD_TARGET_CACHE)/$(BLADE_JAVA_AGENT_NAME)
-# used to invoke by chaosblade
+# used to invoke by sks-agent
 BLADE_JAVA_AGENT_SPEC=jvm.spec.yaml
 BLADE_JAVA_AGENT_SPEC_DEST_PATH=$(BUILD_TARGET_CACHE)/jvm.spec.yaml
 BLADE_JAVA_AGENT_SPEC_DOWNLOAD_URL=$(BLADE_OSS_URL)/$(BLADE_JAVA_AGENT_SPEC)
@@ -47,33 +47,33 @@ BLADE_JAVA_TOOLS_JAR_DOWNLOAD_URL=$(BLADE_OSS_URL)/$(BLADE_JAVA_TOOLS_JAR_NAME)
 # cplus zip contains jar and scripts
 BLADE_CPLUS_ZIP_VERSION=0.0.1
 BLADE_CPLUS_LIB_DIR_NAME=cplus
-BLADE_CPLUS_DIR_NAME=chaosblade-exec-cplus-$(BLADE_CPLUS_ZIP_VERSION)
+BLADE_CPLUS_DIR_NAME=sks-agent-exec-cplus-$(BLADE_CPLUS_ZIP_VERSION)
 BLADE_CPLUS_ZIP_NAME=$(BLADE_CPLUS_DIR_NAME).zip
 BLADE_CPLUS_ZIP_DOWNLOAD_URL=$(BLADE_OSS_URL)/$(BLADE_CPLUS_ZIP_NAME)
 BLADE_CPLUS_ZIP_DEST_PATH=$(BUILD_TARGET_CACHE)/$(BLADE_CPLUS_ZIP_NAME)
 # cplus jar
-BLADE_CPLUS_AGENT_NAME=chaosblade-exec-cplus-$(BLADE_CPLUS_ZIP_VERSION).jar
-# important!! the name is related to the blade program
-BLADE_CPLUS_AGENT_DEST_NAME=chaosblade-exec-cplus.jar
+BLADE_CPLUS_AGENT_NAME=sks-agent-exec-cplus-$(BLADE_CPLUS_ZIP_VERSION).jar
+# important!! the name is related to the sks program
+BLADE_CPLUS_AGENT_DEST_NAME=sks-agent-exec-cplus.jar
 
-# cplus spec is used to invoke by chaosblade
-BLADE_CPLUS_AGENT_SPEC=cplus-chaosblade.spec.yaml
-BLADE_CPLUS_AGENT_SPEC_DEST_PATH=$(BUILD_TARGET_CACHE)/cplus-chaosblade.spec.yaml
+# cplus spec is used to invoke by sks-agent
+BLADE_CPLUS_AGENT_SPEC=cplus-sks-agent.spec.yaml
+BLADE_CPLUS_AGENT_SPEC_DEST_PATH=$(BUILD_TARGET_CACHE)/cplus-sks-agent.spec.yaml
 BLADE_CPLUS_AGENT_SPEC_DOWNLOAD_URL=$(BLADE_OSS_URL)/$(BLADE_CPLUS_AGENT_SPEC)
 
 ifeq ($(GOOS), linux)
 	GO_FLAGS=-ldflags="-linkmode external -extldflags -static -X ${VERSION_PKG}.Ver=$(BLADE_VERSION) -X '${VERSION_PKG}.Env=`uname -mv`' -X '${VERSION_PKG}.BuildTime=`date`'"
 endif
 
-# build chaosblade package and image
+# build sks-agent package and image
 build: pre_build build_osbin build_cli
 	# tar package
 	tar zcvf $(BUILD_TARGET_PKG_FILE_PATH) -C $(BUILD_TARGET) $(BUILD_TARGET_DIR_NAME)
 
-# build chaosblade cli: blade
+# build sks-agent cli: sks
 build_cli:
-	# build blade cli
-	$(GO) build $(GO_FLAGS) -o $(BUILD_TARGET_PKG_DIR)/blade ./cli
+	# build sks cli
+	$(GO) build $(GO_FLAGS) -o $(BUILD_TARGET_PKG_DIR)/sks ./cli
 
 build_osbin: build_burncpu build_burnmem build_burnio build_killprocess build_stopprocess build_changedns build_dlnetwork build_dropnetwork build_filldisk
 
@@ -110,24 +110,24 @@ build_filldisk: exec/os/bin/filldisk/filldisk.go
 	$(GO) build $(GO_FLAGS) -o $(BUILD_TARGET_BIN)/chaos_filldisk $<
 
 # create dir or download necessary file
-pre_build:mkdir_build_target download_sandbox download_blade_java_agent download_cplus_agent
+pre_build:mkdir_build_target download_sandbox download_sks_java_agent download_cplus_agent
 	rm -rf $(BUILD_TARGET_PKG_DIR) $(BUILD_TARGET_PKG_FILE_PATH)
 	mkdir -p $(BUILD_TARGET_BIN) $(BUILD_TARGET_LIB)
 	# unzip jvm-sandbox
 	unzip $(JVM_SANDBOX_DEST_PATH) -d $(BUILD_TARGET_LIB)
-	# cp chaosblade-java-agent
+	# cp sks-agent-java-agent
 	cp $(BLADE_JAVA_AGENT_DEST_PATH) $(BUILD_TARGET_LIB)/sandbox/module/
 	# cp jvm.spec.yaml to bin
 	cp $(BLADE_JAVA_AGENT_SPEC_DEST_PATH) $(BUILD_TARGET_BIN)
 	# cp tools.jar to bin
 	cp $(BLADE_JAVA_TOOLS_JAR_DEST_PATH) $(BUILD_TARGET_BIN)
-	# unzip chaosblade-exec-cplus
+	# unzip sks-agent-exec-cplus
 	unzip $(BLADE_CPLUS_ZIP_DEST_PATH) -d $(BUILD_TARGET_LIB)
-	# rename chaosblade-exec-cplus-VERSION.jar to chaosblade-exec-cplus.jar
+	# rename sks-agent-exec-cplus-VERSION.jar to sks-agent-exec-cplus.jar
 	mv $(BUILD_TARGET_LIB)/$(BLADE_CPLUS_DIR_NAME)/$(BLADE_CPLUS_AGENT_NAME) $(BUILD_TARGET_LIB)/$(BLADE_CPLUS_DIR_NAME)/$(BLADE_CPLUS_AGENT_DEST_NAME)
-	# rename chaosblade-exec-cplus to cplus
+	# rename sks-agent-exec-cplus to cplus
 	mv $(BUILD_TARGET_LIB)/$(BLADE_CPLUS_DIR_NAME) $(BUILD_TARGET_LIB)/$(BLADE_CPLUS_LIB_DIR_NAME)
-	# cp cplus-chaosblade.spec.yaml to bin
+	# cp cplus-sks-agent.spec.yaml to bin
 	mv $(BLADE_CPLUS_AGENT_SPEC_DEST_PATH) $(BUILD_TARGET_BIN)
 
 # download sandbox for java chaos experiment
@@ -137,7 +137,7 @@ ifneq ($(JVM_SANDBOX_DEST_PATH), $(wildcard $(JVM_SANDBOX_DEST_PATH)))
 endif
 
 # download java agent and spec config file
-download_blade_java_agent:
+download_sks_java_agent:
 ifneq ($(BLADE_JAVA_AGENT_DEST_PATH), $(wildcard $(BLADE_JAVA_AGENT_DEST_PATH)))
 	wget "$(BLADE_JAVA_AGENT_DOWNLOAD_URL)" -O $(BLADE_JAVA_AGENT_DEST_PATH)
 endif
@@ -158,22 +158,22 @@ ifneq ($(BUILD_TARGET_CACHE), $(wildcard $(BUILD_TARGET_CACHE)))
 	mkdir -p $(BUILD_TARGET_CACHE)
 endif
 
-# build chaosblade linux version by docker image
+# build sks-agent linux version by docker image
 build_linux:
-	docker build -f build/image/musl/Dockerfile -t chaosblade-build-musl:latest build/image/musl
+	docker build -f build/image/musl/Dockerfile -t sks-agent-build-musl:latest build/image/musl
 	docker run --rm \
 		-v $(shell echo -n ${GOPATH}):/go \
-		-w /go/src/github.com/chaosblade-io/chaosblade \
-		chaosblade-build-musl:latest
+		-w /go/src/github.com/DailyC/sks-agent \
+		sks-agent-build-musl:latest
 
-# build chaosblade image for chaos
+# build sks-agent image for chaos
 build_image: build_linux
 	rm -rf $(BUILD_IMAGE_PATH)/$(BUILD_TARGET_DIR_NAME)
 
 	cp -R $(BUILD_TARGET_PKG_DIR) $(BUILD_IMAGE_PATH)
 	docker build -f $(BUILD_IMAGE_PATH)/Dockerfile \
 		--build-arg BLADE_VERSION=$(BLADE_VERSION) \
-		-t chaosblade-agent:$(BLADE_VERSION) \
+		-t sks-agent-agent:$(BLADE_VERSION) \
 		$(BUILD_IMAGE_PATH)
 
 	rm -rf $(BUILD_IMAGE_PATH)/$(BUILD_TARGET_DIR_NAME)
@@ -182,7 +182,7 @@ build_image: build_linux
 docker_image: clean
 	docker build -f ./Dockerfile \
 		--build-arg BLADE_VERSION=$(BLADE_VERSION) \
-		-t chaosblade:$(BLADE_VERSION) $(BLADE_SRC_ROOT)
+		-t sks-agent:$(BLADE_VERSION) $(BLADE_SRC_ROOT)
 
 # test
 test:

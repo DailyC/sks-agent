@@ -1,17 +1,17 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/chaosblade-io/chaosblade/exec"
 	"context"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/sirupsen/logrus"
-	"github.com/chaosblade-io/chaosblade/util"
-	"path"
 	"fmt"
-	"time"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 	"net/http"
 	"os"
+	"path"
+	"time"
 )
 
 const startServerKey = "blade server start --nohup"
@@ -100,7 +100,7 @@ func (ssc *StartServerCommand) start0() {
 			os.Exit(1)
 		}
 	}()
-	Register("/chaosblade")
+	Register("/sks-agent")
 	util.Hold()
 }
 

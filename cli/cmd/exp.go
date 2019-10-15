@@ -8,14 +8,14 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/chaosblade-io/chaosblade/exec"
-	"github.com/chaosblade-io/chaosblade/exec/cplus"
-	"github.com/chaosblade-io/chaosblade/exec/docker"
-	"github.com/chaosblade-io/chaosblade/exec/jvm"
-	"github.com/chaosblade-io/chaosblade/exec/kubernetes"
-	"github.com/chaosblade-io/chaosblade/exec/os"
-	"github.com/chaosblade-io/chaosblade/transport"
-	"github.com/chaosblade-io/chaosblade/util"
+	"github.com/DailyC/sks-agent/exec"
+	"github.com/DailyC/sks-agent/exec/cplus"
+	"github.com/DailyC/sks-agent/exec/docker"
+	"github.com/DailyC/sks-agent/exec/jvm"
+	"github.com/DailyC/sks-agent/exec/kubernetes"
+	"github.com/DailyC/sks-agent/exec/os"
+	"github.com/DailyC/sks-agent/transport"
+	"github.com/DailyC/sks-agent/util"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -135,7 +135,7 @@ func (ec *expCommand) registerJvmExpCommands() []*modelCommand {
 
 // registerCplusExpCommands
 func (ec *expCommand) registerCplusExpCommands() []*modelCommand {
-	file := path.Join(util.GetBinPath(), "cplus-chaosblade.spec.yaml")
+	file := path.Join(util.GetBinPath(), "cplus-sks-agent.spec.yaml")
 	models, err := exec.ParseSpecsToModel(file, cplus.NewExecutor())
 	if err != nil {
 		return nil
@@ -284,7 +284,7 @@ func (ec *expCommand) registerActionCommand(actionParentCmdName string, spec exe
 			return command.runActionCommand(actionParentCmdName, cmd, args, spec)
 		},
 		PostRunE: func(cmd *cobra.Command, args []string) error {
-			const bladeBin = "blade"
+			const sksBin = "sks"
 			if command.expModel != nil {
 				tt := command.expModel.ActionFlags["timeout"]
 				if tt == "" {
@@ -292,7 +292,7 @@ func (ec *expCommand) registerActionCommand(actionParentCmdName string, spec exe
 				}
 				// the err checked in RunE function
 				if timeout, _ := strconv.ParseUint(tt, 10, 64); timeout > 0 && command.uid != "" {
-					script := path.Join(util.GetProgramPath(), bladeBin)
+					script := path.Join(util.GetProgramPath(), sksBin)
 					args := fmt.Sprintf("nohup /bin/sh -c 'sleep %d; %s destroy %s' > /dev/null 2>&1 &",
 						timeout, script, command.uid)
 					cmd := osexec.CommandContext(context.TODO(), "/bin/sh", "-c", args)

@@ -1,18 +1,18 @@
 package os
 
 import (
+	"github.com/DailyC/sks-agent/util"
 	"testing"
-	"github.com/chaosblade-io/chaosblade/util"
 )
 
 func TestParseCpuList(t *testing.T) {
 	tests := []struct {
-		input string
+		input  string
 		expect []string
 	}{
-		{"0-3", []string{"0","1","2","3"}},
-		{"1,3,5", []string{"1","3","5"}},
-		{"0-2,4,6-7", []string{"0","1","2","4","6","7"}},
+		{"0-3", []string{"0", "1", "2", "3"}},
+		{"1,3,5", []string{"1", "3", "5"}},
+		{"0-2,4,6-7", []string{"0", "1", "2", "4", "6", "7"}},
 	}
 	for _, tt := range tests {
 		got, err := util.ParseIntegerListToStringSlice(tt.input)

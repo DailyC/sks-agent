@@ -8,7 +8,7 @@ ARG MUSL_VERSION=1.1.21
 RUN sed -i 's/deb.debian.org/mirrors.163.com/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install unzip
 
-# # The image is used to build chaosblade for musl
+# # The image is used to build chaossks for musl
 RUN wget http://www.musl-libc.org/releases/musl-${MUSL_VERSION}.tar.gz \
     && tar -zxvf musl-${MUSL_VERSION}.tar.gz \
     && rm musl-${MUSL_VERSION}.tar.gz \
@@ -20,19 +20,19 @@ RUN wget http://www.musl-libc.org/releases/musl-${MUSL_VERSION}.tar.gz \
 
 ENV CC /usr/local/musl/bin/musl-gcc
 ENV GOOS linux
-ENV BLADE_BUILD_PATH /tmp/chaosblade
+ENV BLADE_BUILD_PATH /tmp/sks-agent
 
 # Print go version
 RUN ${CC} --version
 RUN go version
 
-# Build blade
+# Build sks
 COPY . ${BLADE_BUILD_PATH}
 WORKDIR ${BLADE_BUILD_PATH}
 RUN make clean && \
   go mod vendor && \
   env GO111MODULE=on GO15VENDOREXPERIMENT=1 make && \
-  mv -f ${BLADE_BUILD_PATH}/target/chaosblade-${BLADE_VERSION} /usr/local/chaosblade
+  mv -f ${BLADE_BUILD_PATH}/target/sks-agent-${BLADE_VERSION} /usr/local/sks-agent
 
 # Stage2
 FROM alpine:3.9.2
@@ -44,10 +44,10 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 RUN apk --no-cache add --update iproute2 bash util-linux curl \
     && mkdir -p /lib/modules/$(uname -r)
 
-ENV CHAOSBLADE_HOME /usr/local/chaosblade
-COPY --from=builder ${CHAOSBLADE_HOME} ${CHAOSBLADE_HOME}
+ENV sks-agent_HOME /usr/local/sks-agent
+COPY --from=builder ${sks-agent_HOME} ${sks-agent_HOME}
 
-WORKDIR ${CHAOSBLADE_HOME}
-ENV PATH ${CHAOSBLADE_HOME}:${PATH}
+WORKDIR ${sks-agent_HOME}
+ENV PATH ${sks-agent_HOME}:${PATH}
 
-CMD ["blade"]
+CMD ["sks"]
